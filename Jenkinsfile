@@ -1,16 +1,9 @@
-def gitBranch = 'UNKNOWN'
-
 pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
-                script {
-                    def scmVars = checkout scm
-                    gitBranch = scmVars.GIT_BRANCH   
-                    echo 'building'
-                    echo gitBranch
-                }
+                echo env.GIT_BRANCH
             }
         }
         stage('Test') {
