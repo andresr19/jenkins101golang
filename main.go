@@ -13,7 +13,7 @@ func Sum(a, b int) int {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte(fmt.Sprintf("%d", Sum(7, 3))))
+	w.Write([]byte(fmt.Sprintf("%d", Sum(5, 3))))
 }
 
 func main() {
