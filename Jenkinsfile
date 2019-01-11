@@ -1,14 +1,27 @@
+
 pipeline {
+    def app
     agent any
     stages {
+        stage('Clone') {
+            checkout scm
+        }
         stage('Build') {
             steps {
-                echo env.GIT_BRANCH
+                app = docker.build("kkthnxbye/jenkinsgolang101")
             }
         }
         stage('Test') {
             steps {
                 echo 'testing...'
+            }
+        }
+        stage('Push docker image') {
+            steps {
+                docker.withRegistry('', 'personal-docker-hub') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                }
             }
         }
         stage('Deploy') {
