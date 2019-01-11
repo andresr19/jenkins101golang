@@ -1,7 +1,9 @@
+def app
 
 pipeline {
-    def app
+    
     agent any
+    
     stages {
         stage('Cloning') {
             steps {
