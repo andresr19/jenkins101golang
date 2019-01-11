@@ -3,20 +3,22 @@ pipeline {
     def app
     agent any
     stages {
-        stage('Clone') {
-            checkout scm
+        stage('Cloning') {
+            steps {
+                checkout scm
+            }
         }
-        stage('Build') {
+        stage('Docker Building') {
             steps {
                 app = docker.build("kkthnxbye/jenkinsgolang101")
             }
         }
-        stage('Test') {
+        stage('Testing') {
             steps {
                 echo 'testing...'
             }
         }
-        stage('Push docker image') {
+        stage('Docker Pushing') {
             steps {
                 docker.withRegistry('', 'personal-docker-hub') {
                     app.push("${env.BUILD_NUMBER}")
@@ -24,17 +26,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-           when {
-                expression {
-                    return env.GIT_BRANCH == "origin/master"
-                }
-           }
-           steps {
-               echo 'deploying to master'
-           }
-        }
-        stage('Deploy Dev') {
+        stage('Stagging') {
            when {
                 expression {
                     return env.GIT_BRANCH == "origin/branch1"
@@ -42,6 +34,16 @@ pipeline {
            }
            steps {
                echo 'deploying to branch1'
+           }
+        }
+        stage('Production') {
+           when {
+                expression {
+                    return env.GIT_BRANCH == "origin/master"
+                }
+           }
+           steps {
+               echo 'deploying to master'
            }
         }
     }
