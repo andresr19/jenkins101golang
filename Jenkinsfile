@@ -1,10 +1,19 @@
 def app
+def dockerHome
 
 pipeline {
     
     agent any
     
     stages {
+        stage('Init') {
+            steps {
+                script {
+                    dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
         stage('Cloning') {
             steps {
                 checkout scm
