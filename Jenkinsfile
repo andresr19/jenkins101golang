@@ -12,7 +12,9 @@ pipeline {
         }
         stage('Docker Building') {
             steps {
-                app = docker.build("kkthnxbye/jenkinsgolang101")
+                script {
+                    app = docker.build("kkthnxbye/jenkinsgolang101")
+                }
             }
         }
         stage('Testing') {
@@ -22,9 +24,11 @@ pipeline {
         }
         stage('Docker Pushing') {
             steps {
-                docker.withRegistry('', 'personal-docker-hub') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                script {
+                    docker.withRegistry('', 'personal-docker-hub') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
