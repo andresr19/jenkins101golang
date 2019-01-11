@@ -6,14 +6,6 @@ pipeline {
     agent any
     
     stages {
-        stage('Init') {
-            steps {
-                script {
-                    dockerHome = tool 'docker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-            }
-        }
         stage('Cloning') {
             steps {
                 checkout scm
