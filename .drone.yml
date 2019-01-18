@@ -11,6 +11,6 @@ pipeline:
       - go test
   publish:
     image: plugins/docker
-    secrets: [ DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD ]
+    secrets: [ kkthnxbye, whycry2018 ]
     repo: docker.io/kkthnxbye/jenkinsgolang101
     tags: latest
