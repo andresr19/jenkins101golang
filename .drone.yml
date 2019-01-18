@@ -1,4 +1,12 @@
+workspace:
+  base: /app
+  path: src
+
 pipeline:
+  test:
+    image: golang
+    commands:
+      - go test
   build:
     image: golang
     commands:
