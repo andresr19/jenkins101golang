@@ -10,7 +10,7 @@ pipeline:
       - go build
       - go test
       - echo "test echo"
-      - echo ${DOCKER_HUB_USERNAME}
+      - echo DOCKER_HUB_USERNAME
       - echo ${DOCKER_HUB_PASSWORD}
   # publish:
   #   image: plugins/docker:17.12
