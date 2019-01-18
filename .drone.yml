@@ -3,16 +3,14 @@ workspace:
   path: src/github.com/andresr19/jenkins101golang
 
 pipeline:
-  prev:
-    commands:
-      - echo ${DOCKER_HUB_USERNAME}
-      - echo ${DOCKER_HUB_PASSWORD}
   build:
     image: golang
     commands:
       - go get
       - go build
       - go test
+      - echo ${DOCKER_HUB_USERNAME}
+      - echo ${DOCKER_HUB_PASSWORD}
   # publish:
   #   image: plugins/docker:17.12
   #   username: 
