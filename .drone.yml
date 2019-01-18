@@ -16,6 +16,5 @@ pipeline:
         from_secret: ${DOCKER_HUB_USERNAME}
       password: 
         from_secret: ${DOCKER_HUB_PASSWORD}
-      repo: 
-        from_secret: ${DOCKER_HUB_REPONAME}
+      repo: kkthnxbye/jenkinsgolang101
       auto_tag: true
