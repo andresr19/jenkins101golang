@@ -11,10 +11,7 @@ pipeline:
       - go test
   publish:
     image: plugins/docker
-    settings:
-      username: 
-        from_secret: ${DOCKER_HUB_USERNAME}
-      password: 
-        from_secret: ${DOCKER_HUB_PASSWORD}
-      repo: kkthnxbye/jenkinsgolang101
-      auto_tag: true
+    username: ${DOCKER_HUB_USERNAME}
+    password: ${DOCKER_HUB_PASSWORD}
+    repo: kkthnxbye/jenkinsgolang101
+    auto_tag: true
