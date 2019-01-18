@@ -10,7 +10,7 @@ pipeline:
       - go build
       - go test
   publish:
-    image: plugins/docker
+    image: plugins/docker:17.12
     username: ${DOCKER_HUB_USERNAME}
     password: ${DOCKER_HUB_PASSWORD}
     repo: kkthnxbye/jenkinsgolang101
