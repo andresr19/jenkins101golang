@@ -3,14 +3,8 @@ workspace:
   path: src
 
 pipeline:
-  test:
-    image: golang
-    commands:
-      - go get
-      - go test
   build:
     image: golang
     commands:
-      - go get
       - go build
       - go test
