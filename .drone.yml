@@ -1,10 +1,11 @@
 workspace:
-  base: /app
-  path: src
+  base: /go
+  path: src/github.com/andresr19/jenkins101golang
 
 pipeline:
   build:
     image: golang
     commands:
+      - go get
       - go build
       - go test
