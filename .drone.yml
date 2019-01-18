@@ -9,3 +9,10 @@ pipeline:
       - go get
       - go build
       - go test
+  publish:
+    image: plugins/docker
+    settings:
+      username: ${DOCKER_HUB_USERNAME}
+      password: ${DOCKER_HUB_PASSWORD}
+      repo: ${DOCKER_HUB_REPONAME}
+      tags: latest
