@@ -14,4 +14,4 @@ pipeline:
     secrets: [ DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD ]
     repo: kkthnxbye/jenkinsgolang101
     tags: latest
-    previleged: true
+    debug: 
