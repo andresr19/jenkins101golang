@@ -14,9 +14,9 @@ jobs:
       - deploy:
           name: Push
           command: |
-            docker login --username $dockerhub_username --password $dockerhub_password
+            docker login --username $dockerhub_username --password-stdin $dockerhub_password
               # docker tag dockerapp_dockerapp $dockerhub_username/dockerapp:$CIRCLE_SHA1
               # docker tag dockerapp_dockerapp $dockerhub_username/dockerapp:latest
               docker image build -t $dockerhub_username/jenkinsgolang101:latest .
-              docker push $dockerhub_username/jenkinsgolang101:$CIRCLE_SHA1
+              # docker push $dockerhub_username/jenkinsgolang101:$CIRCLE_SHA1
               docker push $dockerhub_username/jenkinsgolang101:latest
