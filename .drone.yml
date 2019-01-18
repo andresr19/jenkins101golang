@@ -14,4 +14,4 @@ pipeline:
     username: ${DOCKER_HUB_USERNAME}
     password: ${DOCKER_HUB_PASSWORD}
     repo: kkthnxbye/jenkinsgolang101
-    auto_tag: true
+    tags: latest
