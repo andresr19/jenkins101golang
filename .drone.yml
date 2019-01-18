@@ -15,4 +15,4 @@ pipeline:
       username: ${DOCKER_HUB_USERNAME}
       password: ${DOCKER_HUB_PASSWORD}
       repo: ${DOCKER_HUB_REPONAME}
-      tags: latest
+      tags: 1.0.0
