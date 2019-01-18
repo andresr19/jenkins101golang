@@ -15,6 +15,7 @@ pipeline:
   #   repo: kkthnxbye/jenkinsgolang101
   #   tags: latest
   publish:
+    image: docker
     secrets: [DOCKER_HUB_USERNAME,DOCKER_HUB_PASSWORD]
     commands:
         - docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
