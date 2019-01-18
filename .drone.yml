@@ -9,8 +9,16 @@ pipeline:
       - go get
       - go build
       - go test
+  # publish:
+  #   image: plugins/docker
+  #   secrets: [ DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD ]
+  #   repo: kkthnxbye/jenkinsgolang101
+  #   tags: latest
   publish:
-    image: plugins/docker
-    secrets: [ DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD ]
-    repo: kkthnxbye/jenkinsgolang101
-    tags: latest
+    secrets: [DOCKER_HUB_USERNAME,DOCKER_HUB_PASSWORD]
+    commands:
+        - docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
+        - docker build -t kkthnxbye/jenkinsgolang101:latest .
+        - docker push kkthnxbye/jenkinsgolang101:latest
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
