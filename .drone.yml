@@ -12,7 +12,10 @@ pipeline:
   publish:
     image: plugins/docker
     settings:
-      username: ${DOCKER_HUB_USERNAME}
-      password: ${DOCKER_HUB_PASSWORD}
-      repo: ${DOCKER_HUB_REPONAME}
-      tags: 1.0.0
+      username: 
+        from_secret: ${DOCKER_HUB_USERNAME}
+      password: 
+        from_secret: ${DOCKER_HUB_PASSWORD}
+      repo: 
+        from_secret: ${DOCKER_HUB_REPONAME}
+      auto_tag: true
