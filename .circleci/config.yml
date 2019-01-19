@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/golang # the primary container, where your job's commands are run
+      - image: docker:latest
+    working_directory: /go/src/github.com/andresr19/jenkins101golang
+    steps:
+      - checkout # check out the code in the project directory
+      - setup_remote_docker
+      - run: go get
+      - run: go build
+      - run: go test
+      - deploy:
+          name: Push
+          command: |
+            # docker login --username $dockerhub_username --password $dockerhub_password
+            echo $dockerhub_password | docker login -u $dockerhub_username --password-stdin
+              # docker tag dockerapp_dockerapp $dockerhub_username/dockerapp:$CIRCLE_SHA1
+              # docker tag dockerapp_dockerapp $dockerhub_username/dockerapp:latest
+              docker image build -t $dockerhub_username/jenkinsgolang101:latest .
+              docker image build -t $dockerhub_username/jenkinsgolang101:$CIRCLE_SHA1 .
+              docker push $dockerhub_username/jenkinsgolang101:$CIRCLE_SHA1
+              docker push $dockerhub_username/jenkinsgolang101:latest
